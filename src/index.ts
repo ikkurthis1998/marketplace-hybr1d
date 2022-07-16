@@ -2,7 +2,7 @@ import express, { json } from 'express';
 import { router } from './router';
 import { log } from './utils/logger.util';
 
-const app = express();
+export const app = express();
 
 app.use(json());
 
@@ -12,4 +12,4 @@ app.listen(port, () => {
     log.info(`Server started on port ${port}`);
 });
 
-router.map((route) => app.use(route.path, route.router));
+router.map((route) => app.use(`/api${route.path}`, route.router));

@@ -7,11 +7,18 @@ import { prisma } from '../configs/prisma.config';
 import { encryptData, decryptData } from "../utils/crypto.util";
 import { ControllerLogger } from "../utils/decorator.util";
 import { getAccessToken } from "../utils/jwt.util";
+import { UserLoginInputSchema } from "../validations/userLoginInput.validation";
 
 export interface IUserRegisterInput {
     firstName: string;
     lastName: string;
     type: UserType;
+    email?: string;
+    phone?: string;
+    password: string;
+}
+
+export interface IUserLoginInput {
     email?: string;
     phone?: string;
     password: string;
@@ -125,7 +132,21 @@ class UserController {
     async LoginUser(req: Request, res: Response): Promise<{ status: any; statusCode: any; message: any; data: any; }> {
         try {
 
-            const { email, phone, password } = req.body;
+            let { email, phone, password } = req.body;
+
+            email = email ? email.trim().toLowerCase() : undefined;
+            phone = phone ? phone.trim() : undefined;
+
+            const validation = validate({ email, phone, password }, UserLoginInputSchema);
+
+            if (validation.status !== "success") {
+                return {
+                    status: validation.status,
+                    statusCode: validation.statusCode,
+                    message: validation.message,
+                    data: validation.data
+                }
+            }
 
             const user: Partial<Pick<User, 'lock'>> & Omit<User, 'lock'> | null = email ? await prisma.user.findFirst({
                 where: {
