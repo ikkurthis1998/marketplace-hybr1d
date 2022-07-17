@@ -51,7 +51,7 @@ export const authenticate = async (req: AuthenticatedRequest, res: Response, nex
     } catch (error: any) {
         const end = performance.now();
         log.info(`${traceId} - ${functionName} - End - ${end - start}ms`);
-        return res.status(error.statusCode).json({
+        return res.status(error.statusCode || 401).json({
             status: "error",
             message: error.message,
             data: error.data,
