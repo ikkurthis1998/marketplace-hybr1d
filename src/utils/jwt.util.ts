@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import jwt from "jsonwebtoken";
+import { UserType } from "@prisma/client";
 
 const accessPrivateSecret = fs.readFileSync(
 	path.resolve(__dirname, "../certs/access_private.pem")
@@ -10,7 +11,10 @@ const accessPublicSecret = fs.readFileSync(
 	path.resolve(__dirname, "../certs/access_public.pem")
 );
 
-const signToken = (payload: any, secret: Buffer, expiresIn: string) => {
+const signToken = (payload: {
+	id: string;
+	type: UserType;
+}, secret: Buffer, expiresIn: string) => {
 	return jwt.sign(payload, secret, {
 		algorithm: "RS256",
 		expiresIn

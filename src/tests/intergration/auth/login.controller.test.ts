@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app } from '../../.';
+import { app } from '../../..';
 
 jest.setTimeout(10000);
 describe("POST /api/auth/login", () => {

@@ -1,4 +1,3 @@
-import { UserType } from '@prisma/client';
 import Joi from 'joi';
 import { IUserLoginInput } from '../controller/auth.controller';
 

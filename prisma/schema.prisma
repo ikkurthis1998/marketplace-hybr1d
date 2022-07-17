@@ -36,26 +36,39 @@ model Catalog {
   userId    String    @unique
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   products  Product[]
+  orders    Order[]
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  catalogId   String
-  catalog     Catalog  @relation(fields: [catalogId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  name        String
-  description String
-  price       Float
-  quantity    Int
-  orders      Order[]
+  id         String      @id @default(uuid())
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  catalogId  String
+  catalog    Catalog     @relation(fields: [catalogId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  name       String
+  price      Float
+  orderItems OrderItem[]
 }
 
 model Order {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  userId    String
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  products  Product[]
+  id         String      @id @default(uuid())
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  userId     String
+  user       User        @relation(fields: [userId], references: [id])
+  catalogId  String
+  catalog    Catalog     @relation(fields: [catalogId], references: [id])
+  orderItems OrderItem[]
+  value      Float
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
 }

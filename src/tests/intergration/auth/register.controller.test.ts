@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import request from 'supertest';
-import { app } from '../../.';
+import { app } from '../../..';
 
 jest.setTimeout(10000);
 describe("POST /api/auth/register", () => {
