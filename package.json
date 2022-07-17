@@ -37,7 +37,7 @@
     "genCertsDev": "rm -rf src/certs && mkdir src/certs && openssl genrsa -out src/certs/access_private.pem 1024 && openssl rsa -in src/certs/access_private.pem -pubout -out src/certs/access_public.pem",
     "dev": "prisma generate && ts-node-dev src/index.ts",
     "genCerts": "rm -rf build/src/certs && mkdir build/src/certs && openssl genrsa -out build/src/certs/access_private.pem 1024 && openssl rsa -in build/src/certs/access_private.pem -pubout -out build/src/certs/access_public.pem",
-    "build": "prisma generate --data-proxy && tsc && npm run genCerts",
+    "build": "prisma generate --data-proxy && prisma db push && tsc && npm run genCerts",
     "start": "npm run build && node build/src/index.js",
     "test": "jest --watch"
   }

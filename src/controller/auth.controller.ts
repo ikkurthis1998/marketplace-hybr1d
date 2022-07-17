@@ -106,7 +106,7 @@ class AuthController {
 
             delete user["lock"];
 
-            const token = getAccessToken({ id: user.id });
+            const token = getAccessToken({ id: user.id, type: user.type });
 
             return {
                 status: "success",
@@ -182,7 +182,7 @@ class AuthController {
 
             delete user["lock"];
 
-            const token = getAccessToken({ id: user.id });
+            const token = getAccessToken({ id: user.id, type: user.type });
 
             return {
                 status: "success",
