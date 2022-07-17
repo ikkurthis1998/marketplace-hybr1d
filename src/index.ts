@@ -13,7 +13,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Marketplace - Hybr1d');
+    res.json('Marketplace - Hybr1d');
 });
 
 router.map((route) => app.use(`/api${route.path}`, route.router));
