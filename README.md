@@ -15,3 +15,6 @@ The database used for this project is PostgreSQL.
 
 ### API Doc
 Postman Doc for the API: https://documenter.getpostman.com/view/15410355/UzQvskDr
+
+### Live @
+Project is live at https://marketplace-hybr1d-server.herokuapp.com
