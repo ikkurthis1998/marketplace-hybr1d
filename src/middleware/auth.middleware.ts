@@ -53,7 +53,7 @@ export const authenticate = async (req: AuthenticatedRequest, res: Response, nex
         log.info(`${traceId} - ${functionName} - End - ${end - start}ms`);
         return res.status(error.statusCode || 401).json({
             status: "error",
-            message: error.message,
+            message: error.message || "Unauthorized",
             data: error.data,
             traceId
         });
