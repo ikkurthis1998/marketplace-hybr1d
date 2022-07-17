@@ -8,9 +8,9 @@ app.use(json());
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-    log.info(`Server started on port ${port}`);
-});
+// app.listen(port, () => {
+//     log.info(`Server started on port ${port}`);
+// });
 
 app.get('/', (req, res) => {
     res.send('Marketplace - Hybr1d');

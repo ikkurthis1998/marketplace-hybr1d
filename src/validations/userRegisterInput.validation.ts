@@ -1,6 +1,6 @@
 import { UserType } from '@prisma/client';
 import Joi, { object, string } from 'joi';
-import { IUserRegisterInput } from '../controller/user.controller';
+import { IUserRegisterInput } from '../controller/auth.controller';
 
 export const UserRegisterInputSchema = Joi.object<IUserRegisterInput>({
     firstName: Joi.string().required(),

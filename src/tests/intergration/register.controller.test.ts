@@ -3,10 +3,10 @@ import request from 'supertest';
 import { app } from '../../.';
 
 jest.setTimeout(10000);
-describe("POST /user/register", () => {
+describe("POST /api/auth/register", () => {
     it("should return a 201 response", async () => {
         const response = await request(app)
-            .post("/api/user/register")
+            .post("/api/auth/register")
             .send({
                 firstName: "John",
                 lastName: "Doe",
@@ -19,7 +19,7 @@ describe("POST /user/register", () => {
 
     it("should return a 400 response", async () => {
         const response = await request(app)
-            .post("/api/user/register")
+            .post("/api/auth/register")
             .send({
                 firstName: "John",
                 lastName: "Doe",
@@ -32,7 +32,7 @@ describe("POST /user/register", () => {
 
     it("should return a 400 response", async () => {
         const response = await request(app)
-            .post("/api/user/register")
+            .post("/api/auth/register")
             .send({
                 firstName: "John",
                 lastName: "Doe",
@@ -45,7 +45,7 @@ describe("POST /user/register", () => {
 
     it("should return a 400 response", async () => {
         const response = await request(app)
-            .post("/api/user/register")
+            .post("/api/auth/register")
             .send({
                 firstName: "John",
                 lastName: "Doe",

@@ -24,7 +24,7 @@ export interface IUserLoginInput {
     password: string;
 }
 
-class UserController {
+class AuthController {
     @ControllerLogger()
     async RegisterUser(req: Request, res: Response): Promise<{ status: any; statusCode: any; message: any; data: any; }> {
         try {
@@ -205,4 +205,4 @@ class UserController {
     }
 }
 
-export const userController = new UserController();
+export const authController = new AuthController();

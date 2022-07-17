@@ -1,8 +1,8 @@
-import { userRouter } from "./user.router";
+import { authRouter } from "./auth.router";
 
 export const router = [
     {
-        path: "/user",
-        router: userRouter
+        path: "/auth",
+        router: authRouter
     }
 ]
