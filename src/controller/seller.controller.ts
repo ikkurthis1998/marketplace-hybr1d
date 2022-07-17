@@ -1,5 +1,5 @@
-import { UserType, Catalog } from "@prisma/client";
-import { Request, Response } from "express";
+import { UserType } from "@prisma/client";
+import { Response } from "express";
 import { prisma } from "../configs/prisma.config";
 import { AuthenticatedRequest } from "../middleware/auth.middleware";
 import { ControllerLogger } from "../utils/decorator.util";
@@ -123,7 +123,15 @@ class SellerController {
                     userId: user?.id
                 },
                 include: {
-                    orders: true
+                    orders: {
+                        include: {
+                            orderItems: {
+                                include: {
+                                    product: true
+                                }
+                            }
+                        }
+                    }
                 }
             });
 
